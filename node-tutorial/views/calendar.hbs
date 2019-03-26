@@ -1,0 +1,57 @@
+<h2>Calendar</h2>
+<table class="table">
+    <thead class="thead-light">
+        <th scope="col">Subject</th>
+        <th scope="col">Start</th>
+        <th scope="col">End</th>
+        <th scope="col">Attendees</th>
+    </thead>
+
+    <tbody>
+        {{#each events}}
+        <tr>
+            <script>
+                var x = "{{this.start.dateTime}}";
+                x.toString();
+                console.log(x);
+                var year = x.substr(0, 4);
+                var month = x.substr(2, 2);
+                var day = x.substr(5, 2);
+                var hour = x.substr(11, 5);
+                console.log(year,month,day,hour);
+            </script>
+            <td>{{this.subject}}</td>
+            <td>
+                <script>document.write(day + "/"+ month +"/"+ year+ "  -     ")
+                </script><font color="light-blue"><script>document.write(hour)</script></font>
+                <!--({{this.start.timeZone}})-->
+            </td>
+            <script>
+                var x = "{{this.end.dateTime}}";
+                x.toString();
+                console.log(x);
+                var year = x.substr(0, 4);
+                var month = x.substr(2, 2);
+                var day = x.substr(5, 2);
+                var hour = x.substr(11, 5);
+                console.log(year,month,day,hour);
+            </script>
+            <td>
+                <script>document.write(day + "/"+ month +"/"+ year+ "  -   ")
+                </script><font color="light-blue"><script>document.write("   "+hour)</script></font>
+                <!--({{this.start.timeZone}})-->
+            </td>
+            <td>
+                <ul class="list-unstyled">
+                    {{#each this.attendees}}
+                    <li class="border p-1" title="{{this.emailAddress.address}}">
+                        {{this.emailAddress.name}}
+                    </li>
+                    {{/each}}
+                </ul>
+            </td>
+        </tr>
+        {{/each}}
+    </tbody>
+
+</table>
